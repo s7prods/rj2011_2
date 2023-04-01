@@ -48,6 +48,11 @@ a, button {
     display: flex;
     flex-direction: row;
 }
+>>> [data-app] > .main > main {
+    flex: 1;
+    padding: 0;
+    overflow: auto;
+}
 </style>
 
 <div v-deep>
@@ -59,10 +64,13 @@ a, button {
         <div class="main">
 
             <main>
+                <div v-if="current_page === '404'" style="padding: 10px;"><h1>404 - Not Found</h1><a href="#/">Homepage.</a></div>
+                <MainView v-if="current_page === 'main'" />
                 
             </main>
         </div>
 
+        <TaskSystem />
         <MobileNavTool :canGoBack="canGo.back" :canGoForward="canGo.forward" />
 
     </div>

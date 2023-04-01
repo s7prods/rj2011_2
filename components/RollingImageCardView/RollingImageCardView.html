@@ -1,0 +1,22 @@
+<div v-deep v-bind="$attrs">
+    <div v-if="error" v-text="error"></div>
+    <ElCarousel v-else indicator-position="outside" trigger="click" arrow="always" :height="height">
+        <ElCarouselItem v-for="item in data">
+            <div class="item-container" :style="{backgroundImage:item.image}">
+                <div>{{item.text}}</div>
+            </div>
+        </ElCarouselItem>
+    </ElCarousel>
+</div>
+
+<style>
+>>> .item-container {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+</style>

@@ -1,34 +1,29 @@
 <header v-deep class="headerbar_container">
-    <img src="public/favicon.png" alt="RJ2011 Icon">
+    <a class="favicon" href="http://xxzrjzx.com/" target="_blank"><img src="public/favicon.png" alt="RJ2011 Icon"></a>
 
     <Component ref="menu" :is="popupMenuIsOpen ? 'menu-modal-dialog' : 'div'" class="el-menu-container" :data-is-popup="popupMenuIsOpen" @click.self="closePopupMenu">
-        <ElMenu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-            <ElMenuItem index="1">首页</ElMenuItem>
+        <ElMenu :default-active="activeIndex" :mode="popupMenuIsOpen ? 'vertical' : 'horizontal'" @select="handleSelect">
+            <ElMenuItem index="/">首页</ElMenuItem>
             <ElSubMenu index="study">
                 <template #title>学习</template>
-                <ElMenuItem index="study-1">内卷</ElMenuItem>
-                <ElMenuItem index="study-2">作业</ElMenuItem>
-                <ElMenuItem index="study-3">排行榜</ElMenuItem>
-                <ElSubMenu index="study-4">
-                    <template #title>item four</template>
-                    <ElMenuItem index="study-4-1">item one</ElMenuItem>
-                    <ElMenuItem index="study-4-2">item two</ElMenuItem>
-                    <ElMenuItem index="study-4-3">item three</ElMenuItem>
-                </ElSubMenu>
+                <ElMenuItem index="/circle/">内卷</ElMenuItem>
+                <ElMenuItem index="/homework/">作业</ElMenuItem>
+                <ElMenuItem index="/ranks/">排行榜</ElMenuItem>
             </ElSubMenu>
             <ElSubMenu index="lao">
                 <template #title>劳</template>
-                <ElMenuItem index="lao-1">劳</ElMenuItem>
-                <ElMenuItem index="lao-2">攒劲劳</ElMenuItem>
+                <ElMenuItem index="/lao/#lao-1">劳</ElMenuItem>
+                <ElMenuItem index="/lao/#lao-2">攒劲劳</ElMenuItem>
+                <ElMenuItem index="/tasks/">任务</ElMenuItem>
                 <ElSubMenu index="discussion">
                     <template #title>讨论</template>
-                    <ElMenuItem index="discussion-1">讨论</ElMenuItem>
-                    <ElMenuItem index="discussion-2">反馈</ElMenuItem>
+                    <ElMenuItem index="/#/discussions/">讨论</ElMenuItem>
+                    <ElMenuItem index="/#/feedback/">反馈</ElMenuItem>
                 </ElSubMenu>
             </ElSubMenu>
-            <ElMenuItem index="search">搜索</ElMenuItem>
-            <ElMenuItem index="settings">设置</ElMenuItem>
-            <ElMenuItem index="about">关于</ElMenuItem>
+            <ElMenuItem index="/search/">搜索</ElMenuItem>
+            <ElMenuItem index="/settings/">设置</ElMenuItem>
+            <ElMenuItem index="/about/">关于</ElMenuItem>
         </ElMenu>
     </Component>
 
@@ -37,6 +32,10 @@
             <Menu />
         </ElIcon>
     </ElButton></div>
+
+    <div class="user-avatar">
+        <ElButton text style="padding: 0" @click="goLogin"><img src="assets/i/login.png" alt="User Avatar"></ElButton>
+    </div>
 </header>
 
 <style>
@@ -49,11 +48,23 @@
     display: flex;
     align-items: center;
     box-shadow: 0 0 5px 0 #ccc;
+    --border: 1px solid var(--el-menu-border-color);
 }
-.headerbar_container[v-deep] > img {
+.headerbar_container[v-deep] > a.favicon {
+    border-bottom: var(--border);
+    border-right: var(--border);
+}
+.headerbar_container[v-deep] > a.favicon,
+.headerbar_container[v-deep] > a.favicon > img {
     height: 58px;
-    border-bottom: 1px solid var(--el-menu-border-color);
-    border-right: 1px solid var(--el-menu-border-color);
+}
+.headerbar_container[v-deep] > .user-avatar {
+    height: 58px;
+    border-bottom: var(--border);
+    border-left: var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }
 .headerbar_container[v-deep] > .el-menu,
 .headerbar_container[v-deep] > div.el-menu-container {
@@ -84,5 +95,6 @@
     position: fixed;
     z-index: 100;
     left: 10px; right: 10px; top: 10px; bottom: 10px; 
+    overflow: auto;
 }
 </style>

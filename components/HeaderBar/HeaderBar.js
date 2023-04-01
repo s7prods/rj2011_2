@@ -7,7 +7,7 @@ const componentId = '865c73f3eb1842599741f5498dd5a2ec';
 const data = {
     data() {
         return {
-            activeIndex: "1",
+            activeIndex: "/",
             popupMenuIsOpen: false,
             
         }
@@ -27,14 +27,18 @@ const data = {
     methods: {
         handleSelect(name) {
             this.activeIndex = name;
-            console.log.apply(console, arguments);
+            // console.log.apply(console, arguments);
             this.closePopupMenu();
+            location.hash = '#' + name;
         },
         showPopupMenu() {
             this.popupMenuIsOpen = true;
         },
         closePopupMenu() {
             this.popupMenuIsOpen = false;
+        },
+        goLogin() {
+            location.hash = '#/login/';
         },
 
     },

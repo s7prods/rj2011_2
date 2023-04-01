@@ -1,7 +1,9 @@
 import { getHTML } from '@/assets/js/browser_side-compiler.js';
-import { computed } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 import MobileNavTool from './MobileNavTool.js';
 import HeaderBar from '../HeaderBar/HeaderBar.js';
+import TaskSystem from '../TaskSystem/TaskSystem.js';
+const MainView = defineAsyncComponent(() => import('./main-view.js'));
 
 
 const componentId = 'c7b799587d4143819836c168e46f3492';
@@ -22,6 +24,8 @@ const data = {
     components: {
         MobileNavTool,
         HeaderBar,
+        TaskSystem,
+        MainView,
 
     },
 
@@ -39,7 +43,8 @@ const data = {
     methods: {
         skipToContent(ev) {
             ev.target.blur();
-            this.htmlEl.querySelector(`main [tabindex="0"], main input, main button, main a[href]`)?.focus();
+            const el = this.htmlEl.querySelector(`main [tabindex="0"], main input, main button, main a[href]`);
+            el && el.focus();
         },
 
     },

@@ -1,0 +1,68 @@
+<div v-deep style="padding: 10px; width: 100%; height: 100%; box-sizing: border-box; overflow: auto;">
+    <div class="image-view">
+        <img src="assets/i/2011-zoo.png" alt="2011 ZOO">
+    </div>
+
+    <div class="grid-view flex-fallback index-big fit-viewport">
+        <RollingImageCardView dataFrom="data/dynamic-info/index-page-rolling-cards.json" />
+        <WidgetContainer>
+            <template #header>中考倒计时</template>
+            <ExamCountdown date="6-18" time="8:0" />
+        </WidgetContainer>
+    </div>
+
+    <div class="grid-view flex-fallback content-area index-components fit-viewport multifr">
+        <WidgetContainer>
+            <template #header>2011 日历</template>
+            <ElCalendar v-deep v-model="calendar"></ElCalendar>
+        </WidgetContainer>
+        <WidgetContainer>
+            <template #header>2011 大事记</template>
+            
+        </WidgetContainer>
+        <WidgetContainer>
+            <template #header>最近更新</template>
+            
+        </WidgetContainer>
+        <WidgetContainer>
+            <template #header>热门</template>
+            
+        </WidgetContainer>
+        
+
+    </div>
+
+</div>
+
+<style>
+>>> a {
+    color: blue;
+    text-decoration: none;
+}
+>>> a:hover {
+    text-decoration: underline;
+}
+>>> .image-view img {
+    box-sizing: border-box;
+    width: 100%;
+}
+>>> .flex-view, >>> .flex-fallback {
+    display: flex;
+    flex-direction: column;
+}
+@supports (display: grid) {
+>>> .grid-view {
+    display: grid;
+}
+>>> .grid-view.fit-viewport {
+    grid-template-columns: 1fr;
+}
+@media screen and (min-width: 500px) { >>> .grid-view.fit-viewport { grid-template-columns: 1fr 1fr } }
+@media screen and (min-width: 1000px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr } }
+@media screen and (min-width: 1500px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr 1fr } }
+@media screen and (min-width: 2000px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr 1fr 1fr } }
+}
+.el-calendar>>> {
+    --el-calendar-cell-width: 48px;
+}
+</style>

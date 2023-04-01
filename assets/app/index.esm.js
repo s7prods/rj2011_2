@@ -69,9 +69,11 @@ await delay(10);
 // updateLoadStat('Loading Element-Plus');
 {
     const element = await import('element-plus');
-    for (const i in element) {
-        if (i.startsWith('El')) app.component(i, element[i]);
-    }
+    const { zhCn } = import('element-plus/locale/zh-cn.js');
+
+    app.use(element.default, {
+        locale: zhCn,
+    })
 }
 // break long tasks
 await delay();
@@ -97,6 +99,48 @@ app.mount(myApp);
 await delay();
 
 
+await import('./init.js');
 document.querySelector('.loading-content').remove();
+
+
+import('./hashchange.js').then(function (data) {
+    function hashchange_handler(ev) {
+        canGoDetector();
+
+        let hash = location.hash;
+
+        for (const i in data.default) {
+            if (hash.startsWith(i)) return data.default[i].apply(globalThis.appInstance_.instance, [hash, app, ev]);
+        }
+
+        // check if it's the default app
+        if (hash === '#/') {
+            globalThis.appInstance_.instance.$data.current_page = 'main';
+            return
+        }
+        if (hash === '' || hash === '#') {
+            globalThis.appInstance_.instance.$data.current_page = 'main';
+            history.replaceState('', document.title, '#/');
+            return;
+        }
+
+        // run the default handler
+        globalThis.appInstance_.instance.$data.current_page = '404';
+
+    }
+    globalThis.addEventListener('hashchange', hashchange_handler);
+    setTimeout(hashchange_handler);
+}).catch(function (error) { console.error('[hashchange_handler]', error) });
+
+
+
+
+export function canGoDetector() {
+    globalThis.appInstance_.instance.canGo = {
+        back: (globalThis.navigation || {}).canGoBack !== false,
+        forward: (globalThis.navigation || {}).canGoForward !== false,
+    } // let old devices can use go and back
+}
+globalThis.setInterval(canGoDetector, 5000);
 
 

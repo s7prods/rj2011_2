@@ -2,7 +2,7 @@ import { getHTML } from '@/assets/js/browser_side-compiler.js';
 import { ArrowLeft, ArrowRight, RefreshRight } from 'icons-vue';
 
 
-const componentId = '182f55e0ee0c4c689a266f775340f953';
+const componentId = '9a62f0c62e9c4a338c0d50a852ee618a';
 
 const data = {
     data() {

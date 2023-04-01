@@ -36,7 +36,7 @@
         <div id="loading-masks">
             <div class="loading-mask mask1">2011</div>
         </div>
-        <script>fetch('assets/app/loading-mask-text').then(v=>v.text()).then(v=>document.querySelector(`#loading-masks .mask1`).innerHTML=v)</script>
+        <script>fetch('assets/app/loading-mask-text').then(v=>v.text()).then(v=>{let a=v.split('%#');document.querySelector(`#loading-masks .mask1`).innerHTML=a[Math.floor(Math.random()*100000)%a.length]})</script>
         <script>setTimeout(()=>{let e=document.querySelector(`#loading-masks`);e&&e.classList.add('slow')},5000)</script>
     </div>
 
