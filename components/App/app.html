@@ -68,7 +68,10 @@ a, button {
                 <MainView v-if="current_page === 'main'" />
                 
             </main>
+
         </div>
+
+        <div style="color: gray" hidden>This site is a mirror of <a href="https://github.com/s7prods/rj2011_2/">rj2011_2</a>. All content here does not represent the views of the site owner.</div>
 
         <TaskSystem />
         <MobileNavTool :canGoBack="canGo.back" :canGoForward="canGo.forward" />
