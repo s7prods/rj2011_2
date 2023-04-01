@@ -1,0 +1,40 @@
+@keyframes loading-spin-1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    12.5% {
+        transform: rotate(180deg);
+    }
+    37.5% {
+        transform: rotate(-180deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+#loading-masks {
+    position: fixed;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-family: monospace;
+}
+
+.loading-mask {
+    animation: loading-spin-1 2s linear infinite;
+}
+#loading-masks.slow .loading-mask {
+    animation: loading-spin-1 5s linear infinite;
+}
+

@@ -1,0 +1,88 @@
+<header v-deep class="headerbar_container">
+    <img src="public/favicon.png" alt="RJ2011 Icon">
+
+    <Component ref="menu" :is="popupMenuIsOpen ? 'menu-modal-dialog' : 'div'" class="el-menu-container" :data-is-popup="popupMenuIsOpen" @click.self="closePopupMenu">
+        <ElMenu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+            <ElMenuItem index="1">首页</ElMenuItem>
+            <ElSubMenu index="study">
+                <template #title>学习</template>
+                <ElMenuItem index="study-1">内卷</ElMenuItem>
+                <ElMenuItem index="study-2">作业</ElMenuItem>
+                <ElMenuItem index="study-3">排行榜</ElMenuItem>
+                <ElSubMenu index="study-4">
+                    <template #title>item four</template>
+                    <ElMenuItem index="study-4-1">item one</ElMenuItem>
+                    <ElMenuItem index="study-4-2">item two</ElMenuItem>
+                    <ElMenuItem index="study-4-3">item three</ElMenuItem>
+                </ElSubMenu>
+            </ElSubMenu>
+            <ElSubMenu index="lao">
+                <template #title>劳</template>
+                <ElMenuItem index="lao-1">劳</ElMenuItem>
+                <ElMenuItem index="lao-2">攒劲劳</ElMenuItem>
+                <ElSubMenu index="discussion">
+                    <template #title>讨论</template>
+                    <ElMenuItem index="discussion-1">讨论</ElMenuItem>
+                    <ElMenuItem index="discussion-2">反馈</ElMenuItem>
+                </ElSubMenu>
+            </ElSubMenu>
+            <ElMenuItem index="search">搜索</ElMenuItem>
+            <ElMenuItem index="settings">设置</ElMenuItem>
+            <ElMenuItem index="about">关于</ElMenuItem>
+        </ElMenu>
+    </Component>
+
+    <div class="m-menu"><ElButton @click="showPopupMenu">
+        <ElIcon>
+            <Menu />
+        </ElIcon>
+    </ElButton></div>
+</header>
+
+<style>
+@media screen and (max-width: 599px) {
+.ws>>> { /* wide screen */
+    display: none;
+}
+}
+.headerbar_container>>> {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 5px 0 #ccc;
+}
+.headerbar_container[v-deep] > img {
+    height: 58px;
+    border-bottom: 1px solid var(--el-menu-border-color);
+    border-right: 1px solid var(--el-menu-border-color);
+}
+.headerbar_container[v-deep] > .el-menu,
+.headerbar_container[v-deep] > div.el-menu-container {
+    flex: 1;
+}
+.headerbar_container[v-deep] > .m-menu {
+    display: none;
+    flex: 1;
+    text-align: right;
+    padding-right: 1em;
+}
+@media screen and (max-width: 599px) {
+.headerbar_container[v-deep] > .el-menu,
+.headerbar_container[v-deep] > div.el-menu-container {
+    display: none;
+}
+.headerbar_container[v-deep] > .m-menu {
+    display: unset;
+}
+}
+.headerbar_container[v-deep] > .el-menu-container[data-is-popup="true"]::before {
+    content: "";
+    position: fixed;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.1);
+}
+.headerbar_container[v-deep] > .el-menu-container[data-is-popup="true"] {
+    position: fixed;
+    z-index: 100;
+    left: 10px; right: 10px; top: 10px; bottom: 10px; 
+}
+</style>

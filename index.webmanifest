@@ -1,0 +1,16 @@
+{
+  "name": "rj2011",
+  "short_name": "rj2011",
+  "description": "rj2011 Web Client",
+  "icons": [
+    {
+      "src": "public/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "display_override": ["standalone"]
+}
