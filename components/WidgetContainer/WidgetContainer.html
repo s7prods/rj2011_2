@@ -1,29 +1,12 @@
 <div v-deep v-bind="$attrs">
     <div class="w-header">
-        <slot name="header"></slot>
+        <div class="w-header-content"><slot name="header"></slot></div>
+        <div class="w-close-button" v-show="closable">
+            <ElButton @click="closeWidget" title="Close widget" :disabled="disableClose"><ElIcon><Close /></ElIcon></ElButton>
+        </div>
     </div>
 
     <div class="w-body">
         <slot></slot>
     </div>
 </div>
-
-<style>
->>> {
-    margin: 5px;
-    border: var(--border-style);
-    box-shadow: 0 0 5px 0 #ccc;
-    border-radius: 5px;
-    --border-style: 1px solid #ddd;
-}
->>> > * {
-    padding: 10px;
-}
->>> > .w-header {
-    border-bottom: var(--border-style);
-    font-size: small;
-}
->>> > .w-header:empty {
-    border-bottom: none;
-}
-</style>

@@ -1,0 +1,20 @@
+
+
+// CloudFlare
+if (location.hostname === 'rj2011.pages.dev') {
+    console.log('Loading stat script for rj2011.pages.dev');
+    const fragment = document.createDocumentFragment();
+    const comment1 = document.createComment(' Cloudflare Web Analytics ');
+    const comment2 = document.createComment(' End Cloudflare Web Analytics ');
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    script.dataset.cfBeacon = '{"token": "d9d857d2209844ae990d30701b6dc3ef"}';
+    fragment.append(comment1, comment2);
+    (document.head || document.documentElement).append(fragment);
+    comment1.after(script);
+}
+
+
+
+return 'STATUS_SUCCESS';

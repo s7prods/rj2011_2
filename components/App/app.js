@@ -1,13 +1,18 @@
 import { getHTML } from '@/assets/js/browser_side-compiler.js';
 import { computed, defineAsyncComponent } from 'vue';
+import { Close, } from 'icons-vue';
 import MobileNavTool from './MobileNavTool.js';
 import HeaderBar from '../HeaderBar/HeaderBar.js';
 import TaskSystem from '../TaskSystem/TaskSystem.js';
 const MainView = defineAsyncComponent(() => import('./main-view.js'));
+const AppSettings = defineAsyncComponent(() => import('../AppSettings/AppSettings.js'));
 
 
 const componentId = 'c7b799587d4143819836c168e46f3492';
 export { componentId };
+    
+const showMirrorTip = (await userdata.get('config', 'hideMirrorTip') === true) ? false : true;
+const showCookieTip = (await userdata.get('config', 'hideCookieTip') === true) ? false : true;
 
 
 
@@ -17,15 +22,19 @@ const data = {
             current_page: 'unknown',
             apptitle: '',
             canGo: {},
+            showMirrorTip,
+            showCookieTip,
 
         };
     },
 
     components: {
+        Close,
         MobileNavTool,
         HeaderBar,
         TaskSystem,
         MainView,
+        AppSettings,
 
     },
 
@@ -45,6 +54,14 @@ const data = {
             ev.target.blur();
             const el = this.htmlEl.querySelector(`main [tabindex="0"], main input, main button, main a[href]`);
             el && el.focus();
+        },
+        closeMirrorTip() {
+            this.showMirrorTip = false;
+            userdata.put('config', true, 'hideMirrorTip');
+        },
+        closeCookieTip() {
+            this.showCookieTip = false;
+            userdata.put('config', true, 'hideCookieTip');
         },
 
     },
@@ -70,11 +87,6 @@ const data = {
 
     },
 
-    // template: await getHTML(import.meta.url, componentId), // 这里importShim polyfill了一个很奇怪的表达式：
-    // template: await getHTML(importShim._r['http://192.168.0.103:4307/web-file-explorer/web/components/App/app.js'].m
-    // ;import{u$_}from'blob:http://192.168.0.103:4307/6ce422f5-12fc-4754-9c2a-936395f494f6';try{u$_({componentId:componentId})}catch(_){};
-    // .url, componentId),
-    // 估计是它内部bug，于是现在只能这么写了。。。
     template: await getHTML('components/App/app.js', componentId),
 
 };

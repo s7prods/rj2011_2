@@ -1,18 +1,22 @@
 [
   {
     "image": "url(data/img/oal/1.png)",
-    "text": "《观点·爱情》其一"
+    "text": "《观点·爱情》其一",
+    "url": "#/article/art/oal/1.html"
   },
   {
     "image": "url(data/img/oal/3.png)",
-    "text": "《观点·爱情》其三"
+    "text": "《观点·爱情》其三",
+    "url": "#/article/art/oal/3.html"
   },
   {
     "image": "url(data/img/alone/qipan_1.png)",
-    "text": "《期盼》"
+    "text": "《期盼》",
+    "url": "#/article/art/standalone/qipan.html"
   },
   {
     "image": "url(data/img/alone/xxlmj.png)",
-    "text": "湘西拦门酒 · 2001 · 翠翠"
+    "text": "湘西拦门酒 · 2001 · 翠翠",
+    "url": "https://v.douyin.com/rjXWhFr/"
   }
 ]

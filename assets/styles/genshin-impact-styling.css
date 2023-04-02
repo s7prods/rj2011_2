@@ -1,0 +1,17 @@
+
+
+
+.genshin-impact-settings-item {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.genshin-impact-settings-item+.genshin-impact-settings-item {
+    margin-top: 10px;
+}
+
+
+
+

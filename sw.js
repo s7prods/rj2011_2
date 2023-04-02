@@ -32,10 +32,10 @@ globalThis.addEventListener('fetch', function (e) {
                 else return result;
             }
         }
-        if (allowCache && (e.request.cache !== 'no-store' && e.request.cache !== 'no-cache')) {
-            const cacheResult = await caches.match(e.request);
-            if (cacheResult) return cacheResult;
-        }
+        // if (allowCache && (e.request.cache !== 'no-store' && e.request.cache !== 'no-cache')) {
+        //     const cacheResult = await caches.match(e.request);
+        //     if (cacheResult) return cacheResult;
+        // }
         try {
             const req = new Request(e.request.url, {
                 method: e.request.method,

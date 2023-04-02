@@ -11,5 +11,13 @@ export default {
         this.$data.current_page = 'article';
     },
 
+    "#/tasks/"(hash) {
+        this.$data.current_page = 'tasks';
+    },
+
+    "#/settings/"(hash) {
+        this.$data.current_page = 'settings';
+    },
+
 
 };

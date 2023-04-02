@@ -44,6 +44,10 @@ setTimeout(function () {
 });
 
 
+import { createApp } from 'vue';
+
+
+    
 let db_name = null;
 try {
     // updateLoadStat('Loading userdata');
@@ -54,7 +58,9 @@ catch (error) {
 }
 
 
-import { createApp } from 'vue';
+navigator.serviceWorker.register('./sw.js');
+
+
 
 // break long tasks
 await delay();
@@ -100,7 +106,9 @@ await delay();
 
 
 await import('./init.js');
+await import('./stat.js');
 document.querySelector('.loading-content').remove();
+window.removeEventListener('error', global_error_handler);
 
 
 import('./hashchange.js').then(function (data) {
@@ -135,7 +143,7 @@ import('./hashchange.js').then(function (data) {
 
 
 
-export function canGoDetector() {
+function canGoDetector() {
     globalThis.appInstance_.instance.canGo = {
         back: (globalThis.navigation || {}).canGoBack !== false,
         forward: (globalThis.navigation || {}).canGoForward !== false,
@@ -143,4 +151,5 @@ export function canGoDetector() {
 }
 globalThis.setInterval(canGoDetector, 5000);
 
+    
 

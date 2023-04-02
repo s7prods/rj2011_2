@@ -15,9 +15,16 @@ export const wenan = {
             }).catch(reject);
         });
     },
+    _previous: -1,
     async getRandomValue() {
         const value = await this.value;
-        return value[Math.floor(Math.random() * 1000000) % value.length];
+        let result = this._previous;
+        let __LOOP_COUNTER__$000001__ = 0;
+        while (result === this._previous) {
+            if (++__LOOP_COUNTER__$000001__ > 10) break;
+            result = value[Math.floor(Math.random() * 1000000) % value.length];
+        }
+        return result;
     }
 };
 const loadNizhiWenan = (async function () {

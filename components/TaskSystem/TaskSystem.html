@@ -1,5 +1,8 @@
 <div v-deep v-bind="$attrs">
-    <button v-deep class="task-entry genshinblock-level-4"></button>
+    <button v-deep class="task-entry genshinblock-level-4" title="任务" @click="goTaskPage"></button>
+    <div v-if="show">
+        任务
+    </div>
 </div>
 
 <style>

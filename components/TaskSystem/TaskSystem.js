@@ -10,11 +10,21 @@ const data = {
         }
     },
 
+    props: {
+        show: {
+            type: Boolean,
+            default: false,
+        },
+    },
+
     components: {
 
     },
 
     methods: {
+        goTaskPage() {
+            location.hash = '#/tasks/';
+        },
 
     },
 

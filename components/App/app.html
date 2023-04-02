@@ -53,6 +53,20 @@ a, button {
     padding: 0;
     overflow: auto;
 }
+>>> .tip.tip-bottom {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 5;
+    background-color: #fff; border-top: 1px solid;
+    display: flex; align-items: center;
+    padding: 5px;
+}
+>>> .tip > .tip-content {
+    flex: 1;
+}
+>>> .tip > .tip-close {
+    margin-left: 0.5em;
+}
 </style>
 
 <div v-deep>
@@ -65,15 +79,23 @@ a, button {
 
             <main>
                 <div v-if="current_page === '404'" style="padding: 10px;"><h1>404 - Not Found</h1><a href="#/">Homepage.</a></div>
+                <TaskSystem :show="current_page === 'tasks'" />
                 <MainView v-if="current_page === 'main'" />
+                <AppSettings v-if="current_page === 'settings'" />
                 
             </main>
 
         </div>
 
-        <div style="color: gray" hidden>This site is a mirror of <a href="https://github.com/s7prods/rj2011_2/">rj2011_2</a>. All content here does not represent the views of the site owner.</div>
+        <div class="tip tip-bottom mirror-tip" style="color: gray" v-show="showMirrorTip">
+            <span class="tip-content">This site is a mirror of <a target="_blank" href="https://github.com/s7prods/rj2011_2/">rj2011_2</a>. All content here does not represent the views of the site owner.</span>
+            <ElButton class="tip-close" @click="closeMirrorTip"><ElIcon><Close /></ElIcon></ElButton>
+        </div>
+        <div class="tip tip-bottom cookie-tip" style="color: gray" v-show="showCookieTip">
+            <span class="tip-content">本网站使用 Cookies 及同类技术改善您的使用体验。继续使用此网站即代表您同意我们使用这些信息。</span>
+            <ElButton class="tip-close" @click="closeCookieTip"><ElIcon><Close /></ElIcon></ElButton>
+        </div>
 
-        <TaskSystem />
         <MobileNavTool :canGoBack="canGo.back" :canGoForward="canGo.forward" />
 
     </div>

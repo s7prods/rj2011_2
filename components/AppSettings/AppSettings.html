@@ -1,0 +1,138 @@
+<div v-deep class="component-root">
+    <h1>设置</h1>
+
+    <details v-deep>
+        <summary>存储设置</summary>
+
+        <div style="padding: 10px;">
+            <div v-if="estimateUnavailable">Not Applicable</div>
+            <template v-else>
+                <ElDescriptions :column="1" border>
+                    <ElDescriptionsItem>
+                        <template #label>总量</template>
+                        <span>{{prettyPrintFileSize(estimate?.quota)}}</span>
+                    </ElDescriptionsItem>
+                    <ElDescriptionsItem>
+                        <template #label>用量</template>
+                        <span>{{prettyPrintFileSize(estimate?.usage)}}</span>
+                    </ElDescriptionsItem>
+                </ElDescriptions>
+                <br>
+                <ElDescriptions :column="1" border>
+                    <ElDescriptionsItem>
+                        <template #label>Caches</template>
+                        <span>{{prettyPrintFileSize(estimate?.usageDetails.caches)}}</span>
+                    </ElDescriptionsItem>
+                    <ElDescriptionsItem>
+                        <template #label>IndexedDB</template>
+                        <span>{{prettyPrintFileSize(estimate?.usageDetails.indexedDB)}}</span>
+                    </ElDescriptionsItem>
+                    <ElDescriptionsItem>
+                        <template #label>Service Worker</template>
+                        <span>{{prettyPrintFileSize(estimate?.usageDetails.serviceWorkerRegistrations)}}</span>
+                    </ElDescriptionsItem>
+                </ElDescriptions>
+            </template>
+        </div>
+    </details>
+
+    <details v-deep open>
+        <summary>页面设置</summary>
+
+        <fieldset>
+            <legend>设置首页中显示的组件：</legend>
+            <label class="componentOption" v-for="(item, index) in widgets">
+                <input type="checkbox" v-model="widgets[index]" @change="updateWidgetOptions">
+                <span>{{wId2Name(index)}}</span>
+            </label>
+        </fieldset>
+    </details>
+
+    <details v-deep open>
+        <summary>Genshin Impact 选项</summary>
+
+        <div class="genshin-impact-settings-item">
+            <span class="genshin-impact-settings-text">什么是 Genshin Impact?</span>
+            <span class="genshin-impact-settings-ctl">
+                <a href="https://genshin.hoyoverse.com" target="_blank">查看</a>
+            </span>
+        </div>
+
+        <div class="genshin-impact-settings-item">
+            <span class="genshin-impact-settings-text">Genshin Impact 元素</span>
+            <span class="genshin-impact-settings-ctl">
+                <select>
+                    <option value="0">不屏蔽</option>
+                    <option value="2">部分屏蔽</option>
+                    <option value="6">完全屏蔽</option>
+                </select>
+            </span>
+        </div>
+
+        <div class="genshin-impact-settings-item">
+            <span class="genshin-impact-settings-text">Genshin Impact 屏蔽等级</span>
+            <span class="genshin-impact-settings-ctl">
+                <input type="range" min="0" max="6">
+            </span>
+        </div>
+    </details>
+
+    <details v-deep open>
+        <summary>其他设置</summary>
+
+        <p>允许统计: <input type="checkbox" v-model="allowStat" @change="updateStat"></p>
+    </details>
+
+    <details v-deep>
+        <summary>所有设置</summary>
+
+        <p v-show="!showAdvanced"><b>不要</b>轻易修改这里的设置，除非你知道你在做什么！<a href="javascript://我知道我在做什么!" @click="enableAdvanced">我知道我在做什么!</a></p>
+        <OptionList v-show="showAdvanced" v-model="settings_data.all" @changed="updateSettings"></OptionList>
+
+        <details style="margin-top: 20px">
+            <summary>Tips</summary>
+            <ol>
+                <li>You can input "true" or "false" directly and they will be converted to Boolean automatically!</li>
+                <li>You can add "String:" before a number to store it as a string, or it will be converted to a number.</li>
+                <li>You can focus on the text and press [Shift+Enter] to edit the item in multiline mode.</li>
+            </ol>
+        </details>
+    </details>
+
+    <div v-deep class="ver">
+        <div>Version: <span v-text=appVersion></span></div>
+    </div>
+</div>
+
+<style>
+.component-root>>> {
+    padding: 10px;
+}
+>>> .componentOption {
+    display: block;
+}
+
+details>>> {
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: auto;
+}
+details>>> * {
+    white-space: nowrap;
+}
+details>>>+details>>> {
+    margin-top: 15px;
+}
+details>>>>summary {
+    cursor: pointer;
+}
+.ver>>> {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: gray;
+    margin-top: 30px;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+</style>

@@ -28,6 +28,18 @@ const data = {
     },
 
     methods: {
+        handleLinkClick(ev) {
+            if (!/^a$/i.test(ev.target.tagName)) return;
+            ev.preventDefault();
+            const href = ev.target.href;
+            try {
+                const url = new URL(href, location.href);
+                if (url.origin === location.origin) location.href = url;
+                else window.open(url, '_blank');
+            } catch {
+                window.open(url, '_blank');
+            }
+        },
 
     },
 

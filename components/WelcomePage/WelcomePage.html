@@ -12,19 +12,19 @@
     </div>
 
     <div class="grid-view flex-fallback content-area index-components fit-viewport multifr">
-        <WidgetContainer>
+        <WidgetContainer :closable="true" @close="closeWidget('calendar')" v-if="widgets.calendar">
             <template #header>2011 日历</template>
             <ElCalendar v-deep v-model="calendar"></ElCalendar>
         </WidgetContainer>
-        <WidgetContainer>
+        <WidgetContainer :closable="true" @close="closeWidget('bigs')" v-if="widgets.bigs">
             <template #header>2011 大事记</template>
             
         </WidgetContainer>
-        <WidgetContainer>
+        <WidgetContainer :closable="true" @close="closeWidget('recents')" v-if="widgets.recents">
             <template #header>最近更新</template>
             
         </WidgetContainer>
-        <WidgetContainer>
+        <WidgetContainer :closable="true" @close="closeWidget('hots')" v-if="widgets.hots">
             <template #header>热门</template>
             
         </WidgetContainer>
@@ -57,10 +57,10 @@
 >>> .grid-view.fit-viewport {
     grid-template-columns: 1fr;
 }
-@media screen and (min-width: 500px) { >>> .grid-view.fit-viewport { grid-template-columns: 1fr 1fr } }
-@media screen and (min-width: 1000px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr } }
-@media screen and (min-width: 1500px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr 1fr } }
-@media screen and (min-width: 2000px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr 1fr 1fr } }
+@media screen and (min-width: 600px) { >>> .grid-view.fit-viewport { grid-template-columns: 1fr 1fr } }
+@media screen and (min-width: 1200px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr } }
+@media screen and (min-width: 1800px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr 1fr } }
+@media screen and (min-width: 2400px) { >>> .grid-view.fit-viewport.multifr { grid-template-columns: 1fr 1fr 1fr 1fr 1fr } }
 }
 .el-calendar>>> {
     --el-calendar-cell-width: 48px;

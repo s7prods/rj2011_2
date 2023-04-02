@@ -1,10 +1,10 @@
-<div v-deep v-bind="$attrs">
+<div v-deep v-bind="$attrs" @click.capture="handleLinkClick">
     <div v-if="error" v-text="error"></div>
     <ElCarousel v-else indicator-position="outside" trigger="click" arrow="always" :height="height">
         <ElCarouselItem v-for="item in data">
-            <div class="item-container" :style="{backgroundImage:item.image}">
+            <a class="item-container" :style="{backgroundImage:item.image}" :href="item.url">
                 <div>{{item.text}}</div>
-            </div>
+            </a>
         </ElCarouselItem>
     </ElCarousel>
 </div>

@@ -27,7 +27,7 @@
         </ElMenu>
     </Component>
 
-    <div class="m-menu"><ElButton @click="showPopupMenu">
+    <div class="m-menu"><ElButton type="primary" plain @click="showPopupMenu" title="显示菜单栏">
         <ElIcon>
             <Menu />
         </ElIcon>
@@ -48,6 +48,7 @@
     display: flex;
     align-items: center;
     box-shadow: 0 0 5px 0 #ccc;
+    z-index: 100;
     --border: 1px solid var(--el-menu-border-color);
 }
 .headerbar_container[v-deep] > a.favicon {
