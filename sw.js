@@ -37,18 +37,20 @@ globalThis.addEventListener('fetch', function (e) {
         //     if (cacheResult) return cacheResult;
         // }
         try {
-            const req = new Request(e.request.url, {
-                method: e.request.method,
-                headers: e.request.headers,
-                body: e.request.body,
-                mode: (e.request.mode === 'navigate') ? undefined : e.request.mode,
-                credentials: e.request.credentials,
-                cache: 'no-cache',
-                redirect: e.request.redirect,
-                referrer: e.request.referrer,
-                referrerPolicy: e.request.referrerPolicy,
-                integrity: e.request.integrity,
-            });
+            const req =
+            // new Request(e.request.url, {
+            //     method: e.request.method,
+            //     headers: e.request.headers,
+            //     body: e.request.body,
+            //     mode: (e.request.mode === 'navigate') ? undefined : e.request.mode,
+            //     credentials: e.request.credentials,
+            //     cache: e.cache,
+            //     redirect: e.request.redirect,
+            //     referrer: e.request.referrer,
+            //     referrerPolicy: e.request.referrerPolicy,
+            //     integrity: e.request.integrity,
+            // });
+            e.request;
             const resp = await fetch(req);
             if (
                 allowCache &&
