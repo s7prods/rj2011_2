@@ -50,9 +50,17 @@ globalThis.appInstance_.load_tip = load_tip;
 load_tip.update('Loading...');
 
 
+const imp = await (async function () {
+    try {
+        await import('idb');
+        return function (u) { return import(u) };
+    } catch { return globalThis.importShim }
+}());
+
+
 load_tip.update('Requesting module: vue');
 // import { createApp } from 'vue';
-const { createApp } = await import('vue');
+const { createApp } = await imp('vue');
 
 
 
@@ -78,7 +86,7 @@ await delay();
 
 // updateLoadStat('Loading Vue Application');
 load_tip.update('Fetching Main Application');
-const Vue_App = (await import('@/components/App/app.js')).default;
+const Vue_App = (await imp('@/components/App/app.js')).default;
 
 
 load_tip.update('Waiting: interrupt');
@@ -91,14 +99,20 @@ load_tip.update('Creating Application Object');
 const app = createApp(Vue_App);
 // break long tasks
 await delay(10);
+load_tip.update('Prefetch...');
+fetch('prefetch_list').then(r => r.json()).then(a => {
+    for (const i of a) fetch(i).catch(() => {});
+}).catch(err => console.warn('Cannot prefetch:', err));
+// break long tasks
+await delay(10);
 // updateLoadStat('Loading Element-Plus');
 load_tip.update('Requesting module: element-plus');
 {
-    const element = await import('element-plus');
-    const { zhCn } = await import('element-plus/locale/zh-cn.js');
+    const element = await imp('element-plus');
+    const { zhCn } = await imp('element-plus/locale/zh-cn.js');
 
     app.use(element.default, {
-        locale: zhCn,
+        locale: globalThis.ElementPlusLocaleZhCn,
     })
 }
 load_tip.update('Waiting: interrupt');

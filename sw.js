@@ -34,24 +34,33 @@ globalThis.addEventListener('fetch', function (e) {
         }
         // if (allowCache && (e.request.cache !== 'no-store' && e.request.cache !== 'no-cache')) {
         //     const cacheResult = await caches.match(e.request);
-        //     if (cacheResult) return cacheResult;
+        //     if (cacheResult) {
+        //         return cacheResult;
+        //     }
         // }
         try {
-            const req =
-            // new Request(e.request.url, {
-            //     method: e.request.method,
-            //     headers: e.request.headers,
-            //     body: e.request.body,
-            //     mode: (e.request.mode === 'navigate') ? undefined : e.request.mode,
-            //     credentials: e.request.credentials,
-            //     cache: e.cache,
-            //     redirect: e.request.redirect,
-            //     referrer: e.request.referrer,
-            //     referrerPolicy: e.request.referrerPolicy,
-            //     integrity: e.request.integrity,
-            // });
-            e.request;
+            const req = new Request(e.request.url, {
+                method: e.request.method,
+                headers: e.request.headers,
+                body: e.request.body,
+                mode: (e.request.mode === 'navigate') ? undefined : e.request.mode,
+                credentials: e.request.credentials,
+                cache: e.cache,
+                redirect: e.request.redirect,
+                referrer: e.request.referrer,
+                referrerPolicy: e.request.referrerPolicy,
+                integrity: e.request.integrity,
+            });
+            const cacheResult = await caches.match(e.request);
+            const useCacheResult = allowCache && /GET/i.test(e.request.method) && cacheResult;
+            if (useCacheResult) {
+                const etag = cacheResult.headers.get('etag');
+                if (etag) req.headers.set('if-none-match', etag);
+            }
             const resp = await fetch(req);
+            if (useCacheResult) {
+                if (resp.status === 304) return cacheResult;
+            }
             if (
                 allowCache &&
                 /GET/i.test(e.request.method) &&

@@ -7,6 +7,7 @@ export async function test(data) {
         reqs.push(new Promise((resolve, reject) => {
             const url = (i.id === 0) ? (new URL(i.url, location.href)) : new URL(i.url);
             const redirurl = new URL(i.redirect_url || url);
+            if (i.id !== 0 && url.origin === window.location.origin) reject('is-current');
             redirurl.searchParams.set('skip_speed_test', window.location.hostname);
             const resp = fetch(url, { cache: 'no-store' });
             resp.then(resp => {
