@@ -45,7 +45,7 @@ globalThis.addEventListener('fetch', function (e) {
                 body: e.request.body,
                 mode: (e.request.mode === 'navigate') ? undefined : e.request.mode,
                 credentials: e.request.credentials,
-                cache: e.cache,
+                cache: e.request.cache,
                 redirect: e.request.redirect,
                 referrer: e.request.referrer,
                 referrerPolicy: e.request.referrerPolicy,

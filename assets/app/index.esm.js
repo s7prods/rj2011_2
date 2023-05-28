@@ -66,6 +66,20 @@ if (typeof HTMLDialogElement === 'undefined') {
     document.head.append(el);
 }
 
+// break long tasks
+await delay(10);
+load_tip.update('Requesting module: speedTest.js');
+const { testAndRun } = await import('./speedTest.js');
+try {
+    load_tip.update('Running auto speed-test');
+    const r = await testAndRun(await (await fetch('assets/app/speedtest-data')).json(), {
+        dtGet(key) { return userdata.get('config', key) },
+        dtSet(key, value) { return userdata.put('config', value, key) },
+
+    });
+    console.info('Speed-test runned successfully with result', r);
+} catch (error) { console.warn('Failed to run speed-test:', error) };
+
 
 load_tip.update('Requesting module: vue');
 // import { createApp } from 'vue';
@@ -143,20 +157,6 @@ console.assert(myApp); if (!myApp) throw new Error('FATAL: #app not found');
 
 // break long tasks
 await delay(10);
-
-// break long tasks
-await delay(10);
-load_tip.update('Requesting module: speedTest.js');
-const { testAndRun } = await import('./speedTest.js');
-try {
-    load_tip.update('Running auto speed-test');
-    const r = await testAndRun(await (await fetch('assets/app/speedtest-data')).json(), {
-        dtGet(key) { return userdata.get('config', key) },
-        dtSet(key, value) { return userdata.put('config', value, key) },
-        
-    });
-    console.info('Speed-test runned successfully with result', r);
-} catch (error) { console.warn('Failed to run speed-test:', error) };
 
 // break long tasks
 await delay(10);
