@@ -132,3 +132,5 @@ table>>> .TextEdit > * {
 }
 `, componentId));
 
+globalThis.appInstance_.load_tip.update('Requesting module: ' + import.meta.url);
+

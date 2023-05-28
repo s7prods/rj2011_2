@@ -102,3 +102,6 @@ import { addCSS } from '@/assets/app/index.esm.js';
 import { getVdeep } from '@/assets/js/browser_side-compiler.js';
 addCSS(`[${getVdeep(componentId)}]>span:empty::after{content:"(empty)";}`);
 
+
+globalThis.appInstance_.load_tip.update('Requesting module: ' + import.meta.url);
+

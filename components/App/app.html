@@ -84,7 +84,7 @@ a, button {
             <main>
                 <div v-if="current_page === '404'" style="padding: 10px;"><h1>404 - Not Found</h1><a href="#/">Homepage.</a></div>
                 <TaskSystem :show="current_page === 'tasks'" />
-                <MainView v-if="current_page === 'main'" />
+                <template v-if="current_page === 'main'"><Suspense><MainView /><template #fallback><div class=app-component-loading-placeholder>正在加载，请稍候...</div></template></Suspense></template>
                 <template v-if="current_page === 'settings'"><Suspense><AppSettings /><template #fallback><div class=app-component-loading-placeholder>正在加载，请稍候...</div></template></Suspense></template>
                 
             </main>

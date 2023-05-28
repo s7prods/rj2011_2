@@ -59,3 +59,5 @@ const data = {
 
 export default data;
 
+globalThis.appInstance_.load_tip.update('Requesting module: ' + import.meta.url);
+

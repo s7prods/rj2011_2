@@ -14,6 +14,8 @@
         },
     });
     const global_error_handler = function (ev) {
+        try { globalThis.appInstance_.load_tip.done() } catch {};
+
         const el = c.div;
         el.id = 'error-mask';
         const [row1, row2, row3] = c[3]`div`;

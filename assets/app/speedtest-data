@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1002,
+    "name": "Cloudflare Pages.dev",
+    "recommended": true,
+    "url": "https://rj2011.pages.dev/public/speedtest",
+    "redirect_url": "https://rj2011.pages.dev/"
+  },
+  {
+    "id": 1003,
+    "name": "Github github.io",
+    "url": "https://s7prods.github.io/rj2011_2/public/speedtest",
+    "redirect_url": "https://s7prods.github.io/rj2011_2/"
+  },
+  {
+    "id": 0,
+    "name": "Current Site",
+    "url": "public/speedtest"
+  }
+]

@@ -21,9 +21,10 @@ export const wenan = {
         let result = this._previous;
         let __LOOP_COUNTER__$000001__ = 0;
         while (result === this._previous) {
-            if (++__LOOP_COUNTER__$000001__ > 10) break;
+            if (++__LOOP_COUNTER__$000001__ > 100) break;
             result = value[Math.floor(Math.random() * 1000000) % value.length];
         }
+        this._previous = result;
         return result;
     }
 };
@@ -102,4 +103,6 @@ setInterval(function callback() {
 
     }
 }, 1000);
+
+globalThis.appInstance_.load_tip.update('Requesting module: ' + import.meta.url);
 

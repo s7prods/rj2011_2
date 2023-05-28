@@ -28,6 +28,11 @@ export async function runtest() {
     try {
         if ('232' !== new (Function)('return "131".replaceAll("1","2")')()) throw 1;
     } catch (_) { return 'String.prototype.replaceAll' }
+
+    // test: Promise.any
+    try {
+        if (await(new (Function)('return Promise.any([Promise.resolve("lalala")])')()) !== 'lalala') throw 1;
+    } catch (_) { return 'Promise.any' }
     
 
     return TEST_PASSED;
