@@ -66,6 +66,21 @@ if (typeof HTMLDialogElement === 'undefined') {
     document.head.append(el);
 }
 
+
+
+load_tip.update('Loading userdata');
+
+let db_name = null;
+try {
+    // updateLoadStat('Loading userdata');
+    db_name = (await import('./userdata.js')).db_name;
+}
+catch (error) {
+    throw error;
+}
+
+
+
 // break long tasks
 await delay(10);
 load_tip.update('Requesting module: speedTest.js');
@@ -81,26 +96,19 @@ try {
 } catch (error) { console.warn('Failed to run speed-test:', error) };
 
 
+
+
 load_tip.update('Requesting module: vue');
 // import { createApp } from 'vue';
 const { createApp } = await imp('vue');
 
 
 
-load_tip.update('Loading userdata');
-
-let db_name = null;
-try {
-    // updateLoadStat('Loading userdata');
-    db_name = (await import('./userdata.js')).db_name;
-}
-catch (error) {
-    throw error;
-}
-
 
 load_tip.update('Registering Service Worker');
 navigator.serviceWorker.register('./sw.js');
+
+
 
 
 
