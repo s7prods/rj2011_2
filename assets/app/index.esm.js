@@ -131,7 +131,7 @@ const app = createApp(Vue_App);
 // break long tasks
 await delay(10);
 load_tip.update('Prefetch...');
-fetch('prefetch_list').then(r => r.json()).then(a => {
+fetch('assets/app/prefetch_list').then(r => r.json()).then(a => {
     for (const i of a) fetch(i).catch(() => {});
 }).catch(err => console.warn('Cannot prefetch:', err));
 // break long tasks
