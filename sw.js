@@ -52,7 +52,7 @@ globalThis.addEventListener('fetch', function (e) {
                 integrity: e.request.integrity,
             });
             const cacheResult = await caches.match(e.request);
-            const useCacheResult = allowCache && /GET/i.test(e.request.method) && cacheResult;
+            const useCacheResult = allowCache && /GET/i.test(req.method) && cacheResult && (req.cache !== 'no-store' && req.cache !== 'no-cache');
             if (useCacheResult) {
                 const etag = cacheResult.headers.get('etag');
                 if (etag) req.headers.set('if-none-match', etag);
@@ -63,9 +63,9 @@ globalThis.addEventListener('fetch', function (e) {
             }
             if (
                 allowCache &&
-                /GET/i.test(e.request.method) &&
+                /GET/i.test(req.method) &&
                 resp.status === 200 &&
-                (e.request.url.startsWith(globalThis.location.origin))
+                (url.startsWith(globalThis.location.origin))
             ) try {
                 const cache = await caches.open(cacheName);
                 await cache.put(e.request, resp.clone());
