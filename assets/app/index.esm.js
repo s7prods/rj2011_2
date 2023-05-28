@@ -58,6 +58,15 @@ const imp = await (async function () {
 }());
 
 
+load_tip.update('Polyfill: dialog');
+if (typeof HTMLDialogElement === 'undefined') {
+    const el = document.createElement('link');
+    el.rel = 'stylesheet', el.type = 'text/css';
+    el.href = 'modules/dialog-polyfill/dialog-polyfill.css';
+    document.head.append(el);
+}
+
+
 load_tip.update('Requesting module: vue');
 // import { createApp } from 'vue';
 const { createApp } = await imp('vue');

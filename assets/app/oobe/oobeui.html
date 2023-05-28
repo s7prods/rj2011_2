@@ -1,0 +1,181 @@
+<dialog class="oobeui-root" id="oobeui_cancel_confirm" style="display: revert;">
+    <h1>是否确认要取消?</h1>
+    <div style="display: flex; width: 100%;">
+        <button class="oobeui-flex-1 el-button" onclick="this.parentElement.parentElement.close()">否</button>
+        <button data-action="confirm" class="oobeui-flex-1 el-button el-button--danger is-plain">是</button>
+    </div>
+</dialog>
+
+<div class="oobeui-root" data-step="10001" hidden>
+    <div class="oobeui-oobe-icon-wrapper">
+        <img width=128 height=128 src="src:img/welcome.png" alt="Welcome">
+    </div>
+
+    <div class="oobeui-oobe-texts">
+        <div class="oobeui-oobe-title">欢迎！</div>
+        <div class="oobeui-oobe-text">欢迎来到此网站！</div>
+        <div class="oobeui-oobe-text">仅需回答几个简单的问题，完成一些个性化设置即可。过得愉快！</div>
+    </div>
+
+    <div class="oobeui-oobe-btns">
+        <div class="oobeui-oobe-btn-left">
+            <button class="el-button">更多选项...</button>
+        </div>
+        <div class="oobeui-oobe-btn-default">
+            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+        </div>
+    </div>
+</div>
+
+<div class="oobeui-root" data-step="10002" hidden>
+    <div class="oobeui-oobe-icon-wrapper">
+        <img width=128 height=128 src="src:img/lang.png" alt="Language">
+    </div>
+
+    <div class="oobeui-oobe-texts">
+        <div class="oobeui-oobe-title">首先，您喜好什么语言？</div>
+        <div class="oobeui-oobe-text-tip">您随时可以在[设置]中更改此选项。</div>
+    </div>
+
+    <div class="oobeui-oobe-input">
+        <select>
+            <option value="zh-cn">简体中文 [Chinese (Simplified)] [zh-cn]</option>
+        </select>
+    </div>
+
+    <div class="oobeui-oobe-btns">
+        <div class="oobeui-oobe-btn-left">
+            <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
+        </div>
+        <div class="oobeui-oobe-btn-default">
+            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+        </div>
+    </div>
+</div>
+
+<div class="oobeui-root" data-step="10003" hidden>
+    <div class="oobeui-oobe-icon-wrapper">
+        <img width=128 height=128 src="src:img/place.png" alt="Language">
+    </div>
+
+    <div class="oobeui-oobe-texts">
+        <div class="oobeui-oobe-title">这是正确的国家(地区)吗?</div>
+    </div>
+
+    <div class="oobeui-oobe-input">
+        <select>
+            <option value="china_mainland">中国大陆</option>
+            <option value="other">其他</option>
+        </select>
+    </div>
+
+    <div class="oobeui-oobe-btns">
+        <div class="oobeui-oobe-btn-left">
+            <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
+        </div>
+        <div class="oobeui-oobe-btn-default">
+            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+        </div>
+    </div>
+</div>
+
+<div class="oobeui-root" data-step="10005" hidden>
+    <div class="oobeui-oobe-icon-wrapper">
+        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" style="pointer-events: none; display: block; width: 128px; height: 128px;"><g>
+        <path d="M15.5 7.5V7c0-.98-.5-1.5-1.5-1.5h-.5c-.276 0-.5-.224-.5-.5V3c0-.98-1-1-1-1C6.3 2 1.712 6.77 2.014 12.54c.265 5.046 4.4 9.18 9.448 9.446C17.23 22.288 22 17.7 22 12v-1c0-.553-.447-1-1-1h-1.998c-.277 0-.502-.225-.502-.502V9c0-.938-.48-1.48-1.5-1.5h-1.5zm-9.706 4.972c-1.057.2-1.966-.71-1.766-1.766.112-.587.592-1.067 1.18-1.178 1.055-.2 1.965.71 1.764 1.765-.11.588-.59 1.068-1.178 1.18zm1.734-5.178c-.2-1.057.71-1.966 1.766-1.766.587.11 1.067.59 1.178 1.178.2 1.057-.708 1.966-1.765 1.766-.587-.11-1.068-.59-1.18-1.178zm3.766 12.178c-1.057.2-1.966-.71-1.766-1.766.112-.587.592-1.067 1.18-1.178 1.056-.2 1.965.71 1.764 1.766-.11.587-.59 1.067-1.178 1.178zM11.5 14c-.828 0-1.5-.67-1.5-1.5s.672-1.5 1.5-1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5zm5 2c-.828 0-1.5-.67-1.5-1.5s.672-1.5 1.5-1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z" fill-rule="evenodd"></path>
+      </g></svg>
+    </div>
+
+    <div class="oobeui-oobe-texts">
+        <div class="oobeui-oobe-title">您允许我们使用“Cookies”为您提供更好的服务吗?</div>
+        <div class="oobeui-oobe-text-tip is-important">我们将持续保护您的隐私安全。</div>
+    </div>
+
+    <div class="oobeui-oobe-input">
+        
+    </div>
+
+    <div class="oobeui-oobe-btns">
+        <div class="oobeui-oobe-btn-left">
+            <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
+        </div>
+        <div class="oobeui-oobe-btn-default">
+            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+        </div>
+    </div>
+</div>
+
+<div class="oobeui-root" data-step="9999" hidden>
+    <div class="oobeui-oobe-icon-wrapper">
+
+    </div>
+
+    <div class="oobeui-oobe-texts">
+        <div class="oobeui-oobe-title">是否立即激活此产品?</div>
+    </div>
+
+    <div class="oobeui-oobe-input">
+        <div><button>生成 Serial No</button></div>
+        <div>Serial No: <input></div>
+        <div><button>生成激活码</button></div>
+        <div>激活码: <input></div>
+    </div>
+
+    <div class="oobeui-oobe-btns">
+        <div class="oobeui-oobe-btn-left">
+            <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
+        </div>
+        <div class="oobeui-oobe-btn-default">
+            <button data-action="next" class="el-button el-button--primary is-plain">不是现在</button>
+            <button data-action="next" class="el-button el-button--primary is-plain">继续</button>
+        </div>
+    </div>
+</div>
+
+
+<style>
+.oobeui-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.oobeui-root * {
+    font-family: 'Consolas', monospace;
+}
+.oobeui-root[hidden] { display: none !important; }
+.oobeui-root > * + * {
+    margin-top: 1em;
+}
+.oobeui-flex-1 {
+    flex: 1;
+}
+.oobeui-oobe-title {
+    font-size: x-large;
+    font-weight: bold;
+}
+.oobeui-oobe-texts {
+    text-align: center;
+}
+.oobeui-oobe-btns {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+}
+.oobeui-oobe-btn-left {
+    flex: 1;
+}
+.oobeui-oobe-text-tip {
+    font-size: small;
+    color: #555;
+}
+.oobeui-oobe-text-tip::before {
+    content: "*";
+    display: inline-block;
+    margin-right: 0.5em;
+    color: black;
+}
+.oobeui-oobe-text-tip.is-important::before {
+    color: red;
+}
+</style>
+
