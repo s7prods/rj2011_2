@@ -38,7 +38,7 @@ const data = {
         return {
             timesLeft: '',
             wenanText: '正在加载腻智文案...',
-
+            
         }
     },
 
@@ -59,10 +59,23 @@ const data = {
         examtime() {
             const [month, day] = this.date.split('-');
             const [h, m = 0, s = 0] = this.time.split(':');
-            const date = new Date();
-            date.setFullYear(date.getFullYear() + (date.getMonth() + 2 > month ? 1 : 0), month - 1, day);
+            const date = new Date(), cdate = new Date();
+            date.setFullYear(date.getFullYear(), month - 1, day);
+            if (date - cdate < 0) {
+                date.setFullYear(date.getFullYear() + 1);
+            }
             date.setHours(h, m, s, 0);
             return date;
+        },
+        ey() {
+            return this.examtime.getFullYear();
+        },
+        utcOffset() {
+            const t = new Date();
+            t.setUTCFullYear(1970, 1, 1);
+            t.setUTCHours(0, 0, 0, 0);
+            const str = t.getHours();
+            return str < 0 ? String(str) : ('+' + String(str));
         },
 
     },
@@ -95,10 +108,10 @@ setInterval(function callback() {
     for (const i of instances) {
         const examtime = i.examtime;
         const t = Math.floor((examtime - now) / 1000);
-        const days    = Math.floor(t / (60 * 60 * 24));
-        const hours   = Math.floor(t / (60 * 60) % 24);
-        const minutes = Math.floor(t / 60 % 60);
-        const seconds = Math.floor(t % 60);
+        const days    = Math.trunc(t / (60 * 60 * 24));
+        const hours   = Math.trunc(t / (60 * 60) % 24);
+        const minutes = Math.trunc(t / 60 % 60);
+        const seconds = Math.trunc(t % 60);
         i.timesLeft = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
 
     }

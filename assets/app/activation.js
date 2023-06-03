@@ -34,7 +34,7 @@ function getLowHighPart(base, quadPart, fillZeroCount = 0) {
     }
     return result;
 }
-function checkKeyIsValid(key) {
+export function checkKeyIsValid(key) {
     // console.log((btoa(encodeURIComponent(JSON.stringify({version:1,status:"active",serialNo:generateSerialNo()})))));
     try {
         const keyData = atob(key);

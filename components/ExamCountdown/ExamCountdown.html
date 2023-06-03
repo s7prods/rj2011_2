@@ -3,14 +3,35 @@
         <span>距离中考仅剩 </span>
         <b>{{timesLeft}}</b>
     </div>
+    <div style="font-size: small; color: gray;"><span>(UTC{{utcOffset}})</span></div>
     <div class="nizhiwenan">
         <span>{{wenanText}}</span>
         <a style="margin-left:1em" href="javascript:" @click="loadNizhiWenan">换一条</a>
     </div>
+    <fieldset class="examTime" style="margin-top: 0.5em;">
+        <legend>考务安排 (仅供参考)</legend>
+        <table border="1" v-deep>
+            <thead>
+                <th>时间</th>
+                <th>科目</th>
+            </thead>
+            <tbody>
+                <tr><td>{{ey}}-6-18 15:30:00<br>{{ey}}-6-18 17:30:00</td><td>语文</td></tr>
+                <tr><td>{{ey}}-6-19 08:00:00<br>{{ey}}-6-19 10:00:00</td><td>数学</td></tr>
+                <tr><td>{{ey}}-6-19 10:50:00<br>{{ey}}-6-19 12:50:00</td><td>政治<br>历史</td></tr>
+                <tr><td>{{ey}}-6-19 15:30:00<br>{{ey}}-6-19 17:30:00</td><td>物理<br>化学</td></tr>
+                <tr><td>{{ey}}-6-20 08:00:00<br>{{ey}}-6-20 09:40:00</td><td>英语</td></tr>
+                <tr><td>{{ey}}-6-20 10:30:00<br>{{ey}}-6-20 11:30:00</td><td>艺术</td></tr>
+            </tbody>
+        </table>
+    </fieldset>
 </div>
 
 <style>
 >>>>.time {
     font-size: x-large;
+}
+table>>> td, table>>> th {
+    padding: 5px 15px;
 }
 </style>

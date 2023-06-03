@@ -1,4 +1,4 @@
-<dialog class="oobeui-root" id="oobeui_cancel_confirm" style="display: revert;">
+<dialog class="oobeui-root" id="oobeui_cancel_confirm">
     <h1>是否确认要取消?</h1>
     <div style="display: flex; width: 100%;">
         <button class="oobeui-flex-1 el-button" onclick="this.parentElement.parentElement.close()">否</button>
@@ -19,13 +19,27 @@
 
     <div class="oobeui-oobe-btns">
         <div class="oobeui-oobe-btn-left">
-            <button class="el-button">更多选项...</button>
+            <button data-action="more" class="el-button">更多选项...</button>
         </div>
         <div class="oobeui-oobe-btn-default">
-            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+            <button data-action="next" class="el-button el-button--primary is-plain">继续</button>
         </div>
     </div>
 </div>
+
+<dialog class="oobeui-root" data-step="9991">
+    <div class="oobeui-oobe-texts">
+        <div class="oobeui-oobe-title">请选择操作</div>
+    </div>
+    
+    <div class="oobeui-oobe-btns">
+        <div class="oobeui-oobe-btn-default oobeui-disp-flex oobeui-flex-col oobeui-flex-1">
+            <div><button data-action="next" onclick="this.parentElement.parentElement.parentElement.parentElement.close()" class="oobeui-width-full el-button el-button--primary is-plain">继续</button></div>
+            <div><button data-action="retry" onclick="location.reload()" class="oobeui-width-full el-button">重新加载</button></div>
+            <div><button data-action="actNow" class="oobeui-width-full el-button">我已有激活码</button></div>
+        </div>
+    </div>
+</dialog>
 
 <div class="oobeui-root" data-step="10002" hidden>
     <div class="oobeui-oobe-icon-wrapper">
@@ -48,7 +62,7 @@
             <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
         </div>
         <div class="oobeui-oobe-btn-default">
-            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+            <button data-action="next" class="el-button el-button--primary is-plain">继续</button>
         </div>
     </div>
 </div>
@@ -74,7 +88,7 @@
             <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
         </div>
         <div class="oobeui-oobe-btn-default">
-            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+            <button data-action="next" class="el-button el-button--primary is-plain">继续</button>
         </div>
     </div>
 </div>
@@ -100,25 +114,21 @@
             <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
         </div>
         <div class="oobeui-oobe-btn-default">
-            <button data-action="next" class="el-button el-button--primary is-plain"128>继续</button>
+            <button data-action="next" class="el-button el-button--primary is-plain">继续</button>
         </div>
     </div>
 </div>
 
-<div class="oobeui-root" data-step="9999" hidden>
-    <div class="oobeui-oobe-icon-wrapper">
-
-    </div>
-
+<div class="oobeui-root" data-step="9992" hidden>
     <div class="oobeui-oobe-texts">
-        <div class="oobeui-oobe-title">是否立即激活此产品?</div>
+        <div class="oobeui-oobe-title">立即激活产品</div>
     </div>
 
     <div class="oobeui-oobe-input">
-        <div><button>生成 Serial No</button></div>
-        <div>Serial No: <input></div>
-        <div><button>生成激活码</button></div>
-        <div>激活码: <input></div>
+        <div>Serial No: <input data-action="sn"></div>
+        <div><button data-action="genCode">生成激活码</button></div>
+        <div>激活码: <input data-action="code"></div>
+        <div class="oobeui-error-shown" data-action="coderr" style="color: red"></div>
     </div>
 
     <div class="oobeui-oobe-btns">
@@ -126,7 +136,7 @@
             <button data-action="cancel" class="el-button el-button--danger is-plain">取消</button>
         </div>
         <div class="oobeui-oobe-btn-default">
-            <button data-action="next" class="el-button el-button--primary is-plain">不是现在</button>
+            <button data-action="notNow" class="el-button el-button--primary is-plain">不是现在</button>
             <button data-action="next" class="el-button el-button--primary is-plain">继续</button>
         </div>
     </div>
@@ -142,13 +152,16 @@
 .oobeui-root * {
     font-family: 'Consolas', monospace;
 }
-.oobeui-root[hidden] { display: none !important; }
 .oobeui-root > * + * {
     margin-top: 1em;
 }
-.oobeui-flex-1 {
-    flex: 1;
-}
+.oobeui-root[hidden], dialog.oobeui-root:not([open]) { display: none !important }
+.oobeui-disp-flex { display: flex }
+.oobeui-flex-col { flex-direction: column }
+.oobeui-flex-1 { flex: 1 }
+.oobeui-width-full, .oobeui-height-full { box-sizing: border-box }
+.oobeui-width-full { width: 100% }
+.oobeui-height-full { height: 100% }
 .oobeui-oobe-title {
     font-size: x-large;
     font-weight: bold;

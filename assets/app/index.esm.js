@@ -106,6 +106,7 @@ const { createApp } = await imp('vue');
 
 
 load_tip.update('Registering Service Worker');
+if (navigator.serviceWorker)
 navigator.serviceWorker.register('./sw.js');
 
 
